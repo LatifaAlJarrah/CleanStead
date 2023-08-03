@@ -1,0 +1,17 @@
+.btn {
+    background-color: #00ADEE;
+}
+
+.btn-sign {
+    border: 1px solid #00ADEE;
+}
+
+.text-logo,
+.item-list:hover,
+.btn-sign {
+    color: #00ADEE;
+}
+
+.items-list-color {
+    color: rgba(29, 29, 53, 1);
+}

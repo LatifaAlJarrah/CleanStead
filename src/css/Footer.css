@@ -1,0 +1,11 @@
+.parent {
+    background-color: #E5F7FD;
+}
+
+.items-color {
+    color: #7D7E82;
+}
+
+.list-items:hover {
+    color: #00ADEE;
+}
