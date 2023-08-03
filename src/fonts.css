@@ -1,0 +1,5 @@
+/* fonts.css */
+@font-face {
+    font-family: 'CustomFont';
+    src: url('fonts/avenir-arabic-medium.otf') format('otf');
+  }
