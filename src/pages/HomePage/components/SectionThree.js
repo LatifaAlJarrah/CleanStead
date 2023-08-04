@@ -9,45 +9,37 @@ import icon3 from '../assest/icon3.png';
 import icon4 from '../assest/icon4.png';
 
 export const SectionThree = () => {
-
-    const section = [
-        { name: "الموثقية" },
-        { name: "الحجز اونلاين" },
-        { name: "خصومات دائمة" },
-        { name: " دعم متواصل" }
-    ]
-
-    const images = [
-        { imageName: icon1 },
-        { imageName: icon2 },
-        { imageName: icon3 },
-        { imageName: icon4 }
+    const whyChooseUsList = [
+        { imageUrl: icon1, name: "الموثقية" },
+        { imageUrl: icon2, name: "الحجز اونلاين" },
+        { imageUrl: icon3, name: "خصومات دائمة" },
+        { imageUrl: icon4, name: " دعم متواصل" }
     ]
 
     return (
-        <div 
+        <div
             className="grid grid-cols-1 mt-10">
-            <div 
+            <div
                 className="col-span-12 justify-center flex">
-                <img 
-                    src={imageReverse} 
-                    alt='not found' 
+                <img
+                    src={imageReverse}
+                    alt='not found'
                     className="w-6 h-9 mt-1 ml-1"
                 />
-                <p 
+                <p
                     className="h-16 text-4xl font-medium leading-10 mx-1"
-                    >لماذا تختارنا
+                >لماذا تختارنا
                 </p>
-                <img 
-                    src={iconSmall} 
-                    alt='not found' 
-                    className="w-6 h-9  mt-1 mr-1" 
+                <img
+                    src={iconSmall}
+                    alt='not found'
+                    className="w-6 h-9  mt-1 mr-1"
                 />
             </div>
 
-            <div 
+            <div
                 className="grid grid-cols-12 gap-4 lg:gap-6 justify-between">
-                <div 
+                <div
                     className="col-span-12 lg:col-span-6">
                     <img
                         src={image7}
@@ -56,16 +48,16 @@ export const SectionThree = () => {
                     />
                 </div>
 
-                <div 
+                <div
                     className="col-span-12 lg:col-span-6 space-y-8 lg:space-y-6 my-auto">
                     {
-                        images.map((image, index) => (
-                            <div 
-                                className="flex flex-col lg:flex-row  md:flex-row sm:flex-row xs:flex-row lg:items-center" 
+                        whyChooseUsList.map((image, index) => (
+                            <div
+                                className="flex flex-col lg:flex-row  md:flex-row sm:flex-row xs:flex-row lg:items-center"
                                 key={index}>
                                 <div>
                                     <img
-                                        src={image.imageName}
+                                        src={image.imageUrl}
                                         alt="not found"
                                         className="background-color rounded-2xl p-7"
                                     />
@@ -75,7 +67,7 @@ export const SectionThree = () => {
                                     <p
                                         className="text-xl font-extrabold section-color">
                                         {
-                                            section[index].name
+                                            image.name
                                         }
                                     </p>
 
