@@ -1,8 +1,8 @@
 import React from 'react'
 
-import './Footer.css';
+import "./Footer.css";
 
-import logo from "../assest/logo.png";
+import logo from "../../assest/logo.png";
 
 import { FaGoogle, FaInstagram, FaWhatsapp, FaYoutube, FaTwitter, FaFacebook, FaPhone, FaEnvelope } from "react-icons/fa";
 
@@ -88,7 +88,7 @@ export const Footer = () => {
           </p>
 
           <div 
-            className="flex flex-row mt-2 xs:justify-center">
+            className="flex flex-row mt-2 sm:justify-center xs:justify-center">
             <i 
               className="ml-2 mt-2">
               <a href='/'>

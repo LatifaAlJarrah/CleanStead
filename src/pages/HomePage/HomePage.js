@@ -1,18 +1,18 @@
 import React from 'react'
 
-import { SectionOne } from '../component/SectionOne';
-import { SectionTwo } from '../component/SectionTwo';
-import { SectionThree } from '../component/SectionThree';
-import { PageContainer } from '../component/PageContainer';
-import { SectionFour } from '../component/SectionFour';
+import { Banners } from './components/Banners/Banners';
+import { Services } from './components/Services';
+import { Advantages } from './components/Advantages';
+import { PageContainer } from '../../component/PageContainer';
+import { Reviews } from './components/Reviews';
 
 const HomePage = () => {
   return (
     <PageContainer>
-      <SectionOne />
-      <SectionTwo />
-      <SectionThree />
-      <SectionFour />
+      <Banners />
+      <Services />
+      <Advantages />
+      <Reviews />
     </PageContainer>
   );
 }

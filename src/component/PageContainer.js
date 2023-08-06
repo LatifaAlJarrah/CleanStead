@@ -1,7 +1,7 @@
 import React from "react";
 
-import { Navbar } from "./Navbar";
-import { Footer } from "./Footer";
+import { Header } from "./Header/Header";
+import { Footer } from "./Footer/Footer";
 
 export const PageContainer = ({ children }) => (
   <body
@@ -9,17 +9,11 @@ export const PageContainer = ({ children }) => (
     <div
       className="w-full"
     >
-      <header>
-        <Navbar />
-      </header>
+      <Header />
 
-      <main>
-        {children}
-      </main>
+      {children}
 
-      <footer>
-        <Footer />
-      </footer>
+      <Footer />         
     </div>
   </body>
 );

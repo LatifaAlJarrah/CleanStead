@@ -1,12 +1,12 @@
 import React from 'react'
 
-import { Main } from '../component/MainContent';
+import { Overview } from '../component/Overview';
 import { PageContainer } from '../component/PageContainer';
 
 const AboutPage = () => {
   return (
     <PageContainer>
-      <Main />
+      <Overview />
     </PageContainer>
   );
 }

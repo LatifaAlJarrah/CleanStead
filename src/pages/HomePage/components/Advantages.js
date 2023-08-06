@@ -1,19 +1,20 @@
 import React from 'react'
 
-import iconSmall from '../assest/iconSmall.jpg';
-import imageReverse from '../assest/imageReverse.jpg';
-import image7 from '../assest/image7.png';
-import icon1 from '../assest/icon1.png';
-import icon2 from '../assest/icon2.png';
-import icon3 from '../assest/icon3.png';
-import icon4 from '../assest/icon4.png';
+import iconSmall from '../../../assest/iconSmall.jpg';
+import imageReverse from '../../../assest/imageReverse.jpg';
+import image7 from '../../../assest/image7.png';
+import icon1 from '../../../assest/icon1.png';
+import icon2 from '../../../assest/icon2.png';
+import icon3 from '../../../assest/icon3.png';
+import icon4 from '../../../assest/icon4.png';
 
-export const SectionThree = () => {
+export const Advantages = () => {
+
     const whyChooseUsList = [
-        { imageUrl: icon1, name: "الموثقية" },
-        { imageUrl: icon2, name: "الحجز اونلاين" },
-        { imageUrl: icon3, name: "خصومات دائمة" },
-        { imageUrl: icon4, name: " دعم متواصل" }
+        { imageUrl: icon1, benefitName: "الموثقية" },
+        { imageUrl: icon2, benefitName: "الحجز اونلاين" },
+        { imageUrl: icon3, benefitName: "خصومات دائمة" },
+        { imageUrl: icon4, benefitName: " دعم متواصل" }
     ]
 
     return (
@@ -67,7 +68,7 @@ export const SectionThree = () => {
                                     <p
                                         className="text-xl font-extrabold section-color">
                                         {
-                                            image.name
+                                            image.benefitName
                                         }
                                     </p>
 

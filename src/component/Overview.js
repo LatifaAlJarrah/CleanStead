@@ -3,9 +3,9 @@ import React from "react";
 import image from "../assest/image.png";
 import iconSmall from "../assest/iconSmall.jpg";
 
-import '../css/MainContent.css';
+import '../css/styles.css';
 
-export const Main = () => {
+export const Overview = () => {
 
   return (
     <div

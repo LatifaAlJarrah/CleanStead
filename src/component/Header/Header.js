@@ -2,20 +2,17 @@ import React, { useState } from "react";
 
 import { useLocation } from "react-router-dom";
 
-import logo from "../assest/logo.png";
-import burgerMenuIcon from "../assest/burgerMenuIcon.png";
+import logo from "../../assest/logo.png";
+import burgerMenuIcon from "../../assest/burgerMenuIcon.png";
 
-import '../css/Navbar.css';
+import './Header.css';
 
-export const Navbar = () => {
+export const Header = () => {
 
-  const location = useLocation();
-  const isHomePage = location.pathname === "/"; 
-
-  const [isOpen, setIsOpen] = useState(false);
+  const [isOpenHomePage, setIsOpenHomePage] = useState(false);
 
   const handleMenuToggle = () => {
-    setIsOpen(!isOpen);
+    setIsOpenHomePage(!isOpenHomePage);
   };
 
   const linkes = [
@@ -51,7 +48,7 @@ export const Navbar = () => {
         <div 
           className="flex lg:order-2 columns-2 items-center">
           {
-            isHomePage && (
+            (
               <a
                 href="/"
                 class="btn-sign text-center px-4 py-2 text-white lg:font-medium rounded-3xl lg:w-32 lg:h-12 ml-2"
@@ -73,21 +70,21 @@ export const Navbar = () => {
               style={{ backgroundImage: `url(${burgerMenuIcon})` }}
             >
               <span
-                className={`bg-gray-800 h-1 w-6 block ${isOpen ? "rotate-45 translate-y-1.5" : ""
+                className={`bg-gray-800 h-1 w-6 block ${isOpenHomePage ? "rotate-45 translate-y-1.5" : ""
                   }`}
               ></span>
               <span
-                className={`bg-gray-800 h-1 w-6 block my-1 ${isOpen ? "opacity-0" : ""
+                className={`bg-gray-800 h-1 w-6 block my-1 ${isOpenHomePage ? "opacity-0" : ""
                   }`}
               ></span>
               <span
-                className={`bg-gray-800 h-1 w-6 block ${isOpen ? "-rotate-45 -translate-y-1.5" : ""
+                className={`bg-gray-800 h-1 w-6 block ${isOpenHomePage ? "-rotate-45 -translate-y-1.5" : ""
                   }`}
               ></span>
             </button>
 
             {
-              isOpen && (
+              isOpenHomePage && (
               <ul 
                 className="absolute top-12 left-2 w-48 p-4 shadow-lg rounded-lg bg-white z-10">
                 {
