@@ -1,0 +1,16 @@
+input {
+    border-color: lightgray;
+}
+
+button[type = 'submit'] {
+    background-color: #00ADEE;
+}
+
+.error {
+    color: red;
+}
+
+.tab {
+    border-bottom: 2px solid#00ADEE;
+    color: #00ADEE
+}

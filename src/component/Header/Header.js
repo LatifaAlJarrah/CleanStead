@@ -1,18 +1,23 @@
 import React, { useState } from "react";
 
-import { useLocation } from "react-router-dom";
-
 import logo from "../../assest/logo.png";
 import burgerMenuIcon from "../../assest/burgerMenuIcon.png";
+
+import Modal  from '../Controllers/Modal';
 
 import './Header.css';
 
 export const Header = () => {
 
   const [isOpenHomePage, setIsOpenHomePage] = useState(false);
+  const [showSignInModal, setShowSignInModal] = useState(false);
 
   const handleMenuToggle = () => {
     setIsOpenHomePage(!isOpenHomePage);
+  };
+
+  const handleSignInButtonClick = () => {
+    setShowSignInModal(true);
   };
 
   const linkes = [
@@ -47,21 +52,19 @@ export const Header = () => {
 
         <div 
           className="flex lg:order-2 columns-2 items-center">
-          {
-            (
-              <a
-                href="/"
-                class="btn-sign text-center px-4 py-2 text-white lg:font-medium rounded-3xl lg:w-32 lg:h-12 ml-2"
-              >دخول
-              </a>
-            )
-          }
-
-          <a
-            href="/"
-            class="btn text-center px-4 py-2 text-white lg:font-medium rounded-3xl lg:w-32 lg:h-12"
-          >احجز الآن
-          </a>
+          <button
+          className="btn-sign text-center px-4 py-2 lg:font-medium rounded-3xl lg:w-32 lg:h-12 ml-2"
+          onClick={handleSignInButtonClick}
+        >
+          دخول
+        </button>
+      
+        <button
+          href="/"
+          className="btn text-center px-4 py-2 text-white lg:font-medium rounded-3xl lg:w-32 lg:h-12"
+        >
+          احجز الآن
+        </button>
 
           <div className="relative lg:hidden">
             <button
@@ -122,6 +125,7 @@ export const Header = () => {
           </ul>
         </div>
       </div>
+      {showSignInModal && <Modal onClose={() => setShowSignInModal(false)} />}
     </nav>
   );
 };
