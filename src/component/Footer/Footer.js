@@ -36,7 +36,7 @@ export const Footer = () => {
           className="col-span-12 lg:col-span-3 md:col-span-6">
           <a 
             href="/" 
-            className="flex columns-2 sm:justify-center xs:justify-center">
+            className="flex columns-2 sm:justify-center xs:justify-center no-underline clean-text-color">
             <span
               className="text-xl font-semibold ml-1"
             >كلين
@@ -65,14 +65,15 @@ export const Footer = () => {
           >خدماتنا
           </p>
           <ul 
-            className="items-color mt-2 ">
+            className="items-color mt-2 list-none">
             {
               linkes.map((link, index) => (
                 <li 
                   key={index} 
                   className="my-1 list-items">
                   <a 
-                    href="/">
+                    href="/"
+                    className='no-underline items-color'>
                     {link.name}
                   </a>
                 </li>

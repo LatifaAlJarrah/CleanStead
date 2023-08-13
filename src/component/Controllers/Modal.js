@@ -1,71 +1,69 @@
 import React, { useState } from 'react';
 
+import { Modal as BSModal } from "react-bootstrap";
+
 import SignUp from './SignUp/SignUp';
 import Register from './Register/Register';
 
 import { AiOutlineClose } from 'react-icons/ai';
 
-const Modal = () => {
-    
-    const [activeTab, setActiveTab] = useState('signup');
-    // const [isModalOpen, setIsModalOpen] = useState(true);
+const Modal = ({ show, onHide }) => {
+
+    const [activeTab, setActiveTab] = useState('signup')
 
     const handleTabChange = (tabName) => {
         setActiveTab(tabName);
-    };
-
-    const handleCloseModal = () => {
-        const modal = document.getElementById('modal');
-        modal.classList.remove('open');
-    };
-    
+    }
 
     return (
-        <div
-            id="modal"
-            className="fixed top-0 left-0 w-full h-full flex items-center justify-center bg-gray-800 bg-opacity-50 z-10">
-            <div className="bg-white p-8 rounded-lg shadow-lg">
-                <h2 className="text-xl font-bold mb-4 text-center flex justify-center">
-                    <AiOutlineClose 
-                        className="w-5 h-5 ml-2 mt-1"
-                        onClick={handleCloseModal}
-                    />
-                    من فضلك قم بتسجيل الدخول للإستمرار
-                </h2>
-                <div className="flex justify-center mb-6 max-w-full">
-                    <div
-                        className={`px-4 py-2 cursor-pointer ${activeTab === 'signup'
-                                ? 'tab'
-                                : 'text-gray-600'
-                            }`}
-                        onClick={() => handleTabChange('signup')}
-                    >
-                        انشاء حساب
+        <BSModal show={show} onHide={onHide}>
+            <BSModal.Body>
+                <div
+                    className="w-full h-full flex items-center justify-center bg-gray-800 bg-opacity-50 z-10">
+                    <div className="bg-white p-8">
+                        <h2 className="text-xl font-bold mb-4 text-center flex justify-center">
+                            من فضلك قم بتسجيل الدخول للإستمرار
+                            <button className="w-5 h-5 ml-4 mt-1 cursor-pointer"
+                                onClick={onHide}>
+                                <AiOutlineClose />
+                            </button>
+                        </h2>
+                        <div className="flex justify-evenly mb-6 w-full border-b-2 border-b-tahiti">
+                            <div
+                                className={`px-4 py-2 cursor-pointer ${activeTab === 'register'
+                                    ? 'tab'
+                                    : 'text-gray-600'
+                                    }`}
+                                onClick={() => handleTabChange('register')}
+                            >
+                                تسجيل دخول
+                            </div>
+                            <div
+                                className={`px-4 py-2 cursor-pointer border-l-tahiti ${activeTab === 'signup'
+                                    ? 'tab'
+                                    : 'text-gray-600'
+                                    }`}
+                                onClick={() => handleTabChange('signup')}
+                            >
+                                إنشاء حساب
+                            </div>         
+                        </div>
+                        <div
+                            className={`p-4 ${activeTab === 'signup' ? 'block' : 'hidden'}`}
+                        >
+                            {<SignUp />}
+                        </div>
+                        <div
+                            className={`p-4 ${activeTab === 'register' ? 'block' : 'hidden'}`}
+                        >
+                            {<Register />}
+                        </div>
+                        
                     </div>
-                    <div
-                        className={`px-4 py-2 cursor-pointer ${activeTab === 'register'
-                                ? 'tab'
-                                : 'text-gray-600'
-                            }`}
-                        onClick={() => handleTabChange('register')}
-                    >
-                        تسجيل دخول
-                    </div>
                 </div>
-                <div 
-                    className={`p-4 border-t ${activeTab === 'register' ? 'block' : 'hidden'}`}
-                >
-                    { <Register /> }
-                </div>
-                <div 
-                    className={`p-4 border-t ${activeTab === 'signup' ? 'block' : 'hidden'}`}
-                >
-                    { <SignUp />}
-                </div>
-            </div>
-        </div>
-    );
-};
+            </BSModal.Body>
+        </BSModal>
+    )
+}
 
-export default Modal;
-
+export default Modal

@@ -1,17 +1,28 @@
-.btn {
-    background-color: #00ADEE;
-}
-
-.btn-sign {
+.btn-sign,
+.btn-booking:hover {
     border: 1px solid #00ADEE;
 }
 
+.btn-sign:hover,
+.btn-booking {
+    background-color: #00ADEE;
+    color: white;
+}
+
+.btn-booking:hover {
+    background-color: white;
+}
 .text-logo,
 .item-list:hover,
-.btn-sign {
+.btn-sign,
+.btn-booking:hover {
     color: #00ADEE;
 }
 
 .items-list-color {
     color: rgba(29, 29, 53, 1);
+}
+
+.clean-text-color {
+    color : rgba(48, 60, 56, 1)
 }

@@ -1,0 +1,45 @@
+.num-step {
+    background-color: rgba(0, 173, 238, 1)
+}
+
+.line-color {
+    color: rgba(196, 196, 196, 1);
+}
+
+.t-con {
+    border-radius: 10px 0 ;
+}
+
+.service-container {
+    border: 2px solid rgba(242, 242, 242, 1);
+}
+
+.dropdown-menu {
+    color: rgba(0, 173, 238, 1);
+}
+
+.btn-back {
+    border: 1px solid #00ADEE;
+    color: #00ADEE;
+}
+
+.btn-booking {
+    background-color: #00ADEE;
+    color: white;
+}
+
+.break-line {
+    height: 20px;
+}
+
+.booking-list {
+    box-shadow: 0px 0px 12px 0px #00ADEE1A;
+}
+
+.summery {
+    background-color: rgba(229, 247, 253, 1);
+}
+
+.text-color {
+    color: rgba(125, 126, 130, 1);
+}

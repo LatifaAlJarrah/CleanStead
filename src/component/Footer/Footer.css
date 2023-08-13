@@ -3,9 +3,9 @@
 }
 
 .items-color {
-    color: #7D7E82;
+    color: rgba(125, 126, 130, 1);
 }
 
-.list-items:hover {
+.items-color:hover {
     color: #00ADEE;
 }
