@@ -1,15 +1,15 @@
-import React from 'react'
+import React from "react";
 
-import { PageContainer } from '../../component/PageContainer';
+import { PageContainer } from "../../component/PageContainer";
 
-import { ServiceBooking } from './components/ServiceBooking'
+import { ServiceBooking } from "./components/ServiceBooking";
 
 const BookingPage = () => {
   return (
     <PageContainer>
-        <ServiceBooking />
+      <ServiceBooking />
     </PageContainer>
-  )
-}
+  );
+};
 
-export default BookingPage
+export default BookingPage;

@@ -12,7 +12,7 @@ import {
   AiOutlineLock,
 } from 'react-icons/ai';
 
-import { 
+import {
   IoEyeSharp,
   IoEyeOffOutline
 } from 'react-icons/io5';
@@ -50,7 +50,6 @@ const validationSchema = Yup.object({
 })
 
 const SignUp = () => {
-
   const [showPassword, setShowPassword] = useState(false);
 
   const formik = useFormik({
@@ -84,95 +83,118 @@ const SignUp = () => {
   console.log("Formik Visited: ", formik.touched);
 
   return (
-    <form method="POST" className="space-y-4 text-right" onSubmit={formik.handleSubmit}>
+    <form method="POST" className="space-y-2 text-right" onSubmit={formik.handleSubmit}>
       <div className="relative">
-        <label htmlFor="name" className="text-sm mr-2 mb-2">
+        <label htmlFor="name" className="text-sm mr-2">
           الاسم
         </label>
 
-        <input
-          type="text"
-          id="name"
-          name="name"
-          placeholder="أدخل اسمك"
-          className="py-2 px-4 pr-10 border rounded-full text-gray-800 focus:outline-none focus:ring focus:border-blue-300 w-full text-right"
-          {...formik.getFieldProps('name')}
-        />
+        <div className="relative">
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="أدخل اسمك"
+            className="py-2 px-12 border border-gray-300 rounded-full text-gray-800 focus:outline-none focus:ring focus:border-blue-300 w-full text-right"
+            {...formik.getFieldProps('name')}
+          />
 
-        <span className="absolute inset-y-1 right-0 flex items-center pr-3 pointer-events-none">
-          <AiOutlineUser className="w-5 h-5 mt-4" />
-        </span>
-        {formik.touched.name && formik.errors.name ? <div className="error">{formik.errors.name}</div> : null}
+          <span className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+            <AiOutlineUser className="w-5 h-5" />
+          </span>
+        </div>
+        {formik.touched.name && formik.errors.name ?
+          <div className="error">{formik.errors.name}</div>
+          : null}
 
       </div>
 
       <div className="relative">
-        <label htmlFor="email" className="text-sm mr-2 mb-2">
+        <label htmlFor="email" className="text-sm block mb-1">
           البريد الإلكتروني
         </label>
 
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="أدخل البريد الإلكتروني"
-          className="py-2 px-4 pr-10 border border-gray-300 rounded-full text-gray-800 focus:outline-none focus:ring focus:border-blue-300 w-full text-right"
-          {...formik.getFieldProps('email')}
-        />
+        <div className="relative">
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="أدخل البريد الإلكتروني"
+            className="py-2 px-10 h-10 border border-gray-300 rounded-full text-gray-800 focus:outline-none focus:ring focus:border-blue-300 w-full text-right"
+            {...formik.getFieldProps('email')}
+          />
 
-        <span className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-          <AiOutlineMail className="w-5 h-5 mt-4" />
-        </span>
-        {formik.touched.email && formik.errors.email ? <div className="error">{formik.errors.email}</div> : null}
-
+          <span className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+            <AiOutlineMail className="w-5 h-5" />
+          </span>
+        </div>
       </div>
 
-      <div className="relative">
-        <label htmlFor="phone" className="text-sm mr-2 mb-2">
+      {formik.touched.email && formik.errors.email ? (
+        <div className="error mt-2">
+          {formik.errors.email}
+        </div>
+      ) : null}
+
+      <div className="relative w-full">
+        <label htmlFor="phone" className="text-sm mr-2">
           رقم الهاتف
         </label>
 
-        <input
-          type="tel"
-          id="phone"
-          name="phone"
-          placeholder="أدخل رقم هاتفك"
-          className="py-2 px-4 pr-10 border border-gray-300 rounded-full text-gray-800 focus:outline-none focus:ring focus:border-blue-300 w-full text-right"
-          {...formik.getFieldProps('phone')}
-        />
+        <div className="relative">
+          <input
+            type="tel"
+            id="phone"
+            name="phone"
+            placeholder="أدخل رقم هاتفك"
+            className="py-2 px-12 border border-gray-300 rounded-full text-gray-800 focus:outline-none focus:ring focus:border-blue-300 w-full text-right"
+            {...formik.getFieldProps('phone')}
+          />
 
-        <span className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-          <AiOutlinePhone className="w-5 h-5 mt-4" />
-        </span>
-        {formik.touched.phone && formik.errors.phone ? <div className="error">{formik.errors.phone}</div> : null}
+          <span className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+            <AiOutlinePhone className="w-5 h-5" />
+          </span>
+        </div>
 
+        {formik.touched.phone && formik.errors.phone ?
+          <div className="error">{formik.errors.phone}</div>
+          : null}
       </div>
 
       <div className="relative">
-        <label htmlFor="password" className="text-sm mr-2 mb-2">
+        <label htmlFor="password" className="text-sm mr-2">
           كلمة المرور
         </label>
 
-        <input
-          type={showPassword ? 'text' : 'password'}
-          id="password"
-          name="password"
-          placeholder="أدخل كلمة المرور"
-          className="py-2 px-4 pr-10 border border-gray-300 rounded-full text-gray-800 focus:outline-none focus:ring focus:border-blue-300 w-full text-right"
-          {...formik.getFieldProps('password')}
-        />
+        <div className="relative">
+          <span
+            className="absolute inset-y-0 left-0 flex items-center ml-3 cursor-pointer"
+            onClick={togglePasswordVisibility}
+          >
+            {showPassword ? (
+              <IoEyeOffOutline className="w-5 h-5" />
+            ) : (
+              <IoEyeSharp className="w-5 h-5" />
+            )}
+          </span>
 
-        <span
-          className="absolute inset-y-0 left-0 flex items-center pl-3"
-          onClick={togglePasswordVisibility}>
-          {showPassword ? <IoEyeOffOutline className="w-5 h-5 mt-4" /> : <IoEyeSharp className="w-5 h-5 mt-4" />}
-        </span>
+          <input
+            type={showPassword ? 'text' : 'password'}
+            id="password"
+            name="password"
+            placeholder="أدخل كلمة المرور"
+            className="py-2 px-12 border border-gray-300 rounded-full text-gray-800 focus:outline-none focus:ring focus:border-blue-300 w-full text-right"
+            {...formik.getFieldProps('password')}
+          />
 
-        <span className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
-          <AiOutlineLock className="w-5 h-5 mt-4" />
-        </span>
-        {formik.touched.password && formik.errors.password ? <div className="error">{formik.errors.password}</div> : null}
+          <span className="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none">
+            <AiOutlineLock className="w-5 h-5" />
+          </span>
+        </div>
 
+        {formik.touched.password && formik.errors.password ? (
+          <div className="error mt-2">{formik.errors.password}</div>
+        ) : null}
       </div>
 
       <button

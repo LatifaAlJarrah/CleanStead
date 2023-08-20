@@ -1,8 +1,25 @@
-.num-step {
+.num-step-one {
     background-color: rgba(0, 173, 238, 1)
 }
+.num-step-two,
+.num-step-three {
+    border: 1px solid #C4C4C4
+}
 
-.line-color {
+.num-step-two:focus-visible,
+.num-step-three:focus-visible {
+    background-color: rgba(0, 173, 238, 1);
+    color: white;
+}
+.num-step-two,
+.num-step-three,
+.text-step-two,
+.text-step-three { 
+    color: #C4C4C4;
+}
+
+.line-color,
+.color-booking-date {
     color: rgba(196, 196, 196, 1);
 }
 
@@ -10,7 +27,8 @@
     border-radius: 10px 0 ;
 }
 
-.service-container {
+.service-container,
+.booking-date {
     border: 2px solid rgba(242, 242, 242, 1);
 }
 
@@ -42,4 +60,23 @@
 
 .text-color {
     color: rgba(125, 126, 130, 1);
+}
+
+.btn-increment,
+.btn-decrement {
+    background-color: rgba(229, 247, 253, 1);
+    color: #C4C4C4;
+}
+
+.counter {
+    color: black;
+    border: 1px solid  rgba(229, 247, 253, 1);
+}
+
+.sign-up-text {
+    color: #00ADEE;
+}
+
+.error-message {
+    color: red;
 }

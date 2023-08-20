@@ -14,10 +14,6 @@ const initialValues = {
     message: "",
 }
 
-const onSubmit = values => {
-    console.log("Form Data: ", values)
-}
-
 const validationSchema = Yup.object({
     service: Yup.string()
     .required('هذا الحقل مطلوب!'),
@@ -51,8 +47,23 @@ const validationSchema = Yup.object({
 export const ContactForm = () => {
     const formik = useFormik({
         initialValues,
-        onSubmit,
         validationSchema,
+        onSubmit: async (values) => {
+            try {
+              const response = await fetch('https://student.valuxapps.com/api/contacts', {
+                method: 'POST',
+                body: JSON.stringify(values),
+              });
+      
+              if (response.ok) {
+                console.log('Data sent successfully');
+              } else {
+                console.error('Failed to send data');
+              }
+            } catch (error) {
+              console.error('Error:', error);
+            }
+          },
     });
 
     console.log("Formik Visited: ", formik.touched);
@@ -76,6 +87,7 @@ export const ContactForm = () => {
                 </div>
                 <form
                     onSubmit={formik.handleSubmit}
+                    method="POST"
                     className="xl:text-2xl lg:text-2xl md:text-xl sm:text-xl xs:text-xl xl:mt-5 sm:mt-5 xs:mt-2 col-span-4 text-content font-light"
                 >
                     <form className="space-y-4" onSubmit={formik.handleSubmit}>
@@ -151,6 +163,7 @@ export const ContactForm = () => {
                 <button
                     type="submit"
                     className="w-32 h-10 xl:mt-10 lg:mt-14 sm:mt-9 xs:mt-6 cursor-pointer text-white rounded-3xl btn-contact"
+                    onClick={formik.handleSubmit}
                 >أرسل
                 </button>
             </div>
