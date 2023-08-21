@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import room from "../../../assest/room.png";
 import "./ServiceBooking.css";
+import { useCleaningOptionsContext } from "./CleaningOptionsContext";
 
 const DetailsSection = ({ name, count, price }) => {
   return (
@@ -83,13 +84,15 @@ const ServiceDetails = ({ name, count, setCount }) => {
   );
 };
 
-const CleaningOption = ({ name, options, setOptions }) => {
+const CleaningOption = ({ name }) => {
   const [showDetails, setShowDetails] = useState(false);
   const [service1Count, setService1Count] = useState(0);
   const [service2Count, setService2Count] = useState(0);
+  const { cleaningOptions, dispatch } = useCleaningOptionsContext();
 
-  React.useEffect(() => {
-    const newOptions = options.filter((option) => option.name !== name);
+  useEffect(() => {
+    const newOptions = cleaningOptions.filter((option) => option.name !== name);
+
     const newService1Option =
       service1Count > 0
         ? { count: service1Count, price: service1Count * 15 }
@@ -108,12 +111,7 @@ const CleaningOption = ({ name, options, setOptions }) => {
         },
       };
       newOptions.push(newOption);
-      setOptions(newOptions);
-
-      localStorage.setItem(
-        "selectedCleaningOptions",
-        JSON.stringify(newOptions)
-      );
+      dispatch({ type: "ADD_OPTION", payload: newOption });
     }
   }, [service1Count, service2Count]);
 
@@ -156,7 +154,9 @@ const CleaningOption = ({ name, options, setOptions }) => {
 
 export const ServicesClassification = () => {
   const [selectedOptions, setSelectedOptions] = useState([]);
+  const { cleaningOptions } = useCleaningOptionsContext();
 
+  console.log("Stored Data:", cleaningOptions);
   return (
     <div className="booking-list p-4">
       <div className="font-medium xl:text-xl sm:text-base h-8 mb-6">
