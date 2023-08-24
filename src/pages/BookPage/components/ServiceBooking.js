@@ -7,6 +7,7 @@ import { ServicesClassification } from "./ServicesClassification";
 import { CleaningOptionsProvider } from "./CleaningOptionsContext";
 
 import { GlobalStateContext, GlobalStateProvider } from "./GlobalStateProvider";
+import { useTotalPriceContext } from './TotalPriceContext';
 
 import iconSmall from "../../../assest/iconSmall.jpg";
 
@@ -14,11 +15,14 @@ import "./ServiceBooking.css";
 
 export const ServiceBooking = () => {
   const [currentStep, setCurrentStep] = useState(1);
+  const { service1Total, service2Total } = useTotalPriceContext();
+  const total = service1Total + service2Total;
 
   const handleContinue = () => {
     if (currentStep === 1) {
       setCurrentStep(currentStep + 1);
     } else if (currentStep === 2) {
+      
       setCurrentStep(currentStep + 1);
     } else if (currentStep === 3) {
     }
@@ -366,14 +370,11 @@ export const ServiceBooking = () => {
                 </button>
               )}
 
-              <div className="relative">
-                
-              </div>
+              <div className="relative"></div>
               {currentStep < 3 && (
                 <button
                   className="btn-booking text-center px-4 py-2 lg:font-medium rounded-3xl lg:w-32 lg:h-12"
                   onClick={handleCountinueBooking}
-                  // disabled={!isValid || !dirty}
                 >
                   استمرار
                 </button>
@@ -385,7 +386,6 @@ export const ServiceBooking = () => {
                 </button>
               )}
             </div>
-            
           </div>
 
           <div className="col-span-4 h-96">
@@ -406,7 +406,7 @@ export const ServiceBooking = () => {
 
               <div>
                 <p className="text-lg text-color">اجمالي السعر</p>
-                <p className="text-xl">55 $</p>
+                <p className="text-xl">{total}$</p>
               </div>
             </div>
           </div>
