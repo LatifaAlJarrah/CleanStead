@@ -7,7 +7,7 @@ import { ServicesClassification } from "./ServicesClassification";
 import { CleaningOptionsProvider } from "./CleaningOptionsContext";
 
 import { GlobalStateContext, GlobalStateProvider } from "./GlobalStateProvider";
-import { useTotalPriceContext } from './TotalPriceContext';
+import { useTotalPriceContext } from "./TotalPriceContext";
 
 import iconSmall from "../../../assest/iconSmall.jpg";
 
@@ -22,7 +22,6 @@ export const ServiceBooking = () => {
     if (currentStep === 1) {
       setCurrentStep(currentStep + 1);
     } else if (currentStep === 2) {
-      
       setCurrentStep(currentStep + 1);
     } else if (currentStep === 3) {
     }
@@ -39,9 +38,7 @@ export const ServiceBooking = () => {
   const BookingDate = () => {
     const { state, dispatch } = useContext(GlobalStateContext);
     const selectedDate = state.selectedDate;
-
-    console.log(state);
-
+    
     const handleOptionChange = (event) => {
       dispatch({ type: "SET_SELECTED_OPTION", payload: event.target.value });
     };
@@ -155,7 +152,6 @@ export const ServiceBooking = () => {
                 />
               </label>
             </div>
-
             <ErrorMessage
               name="selectedDate"
               component="div"
@@ -169,8 +165,6 @@ export const ServiceBooking = () => {
 
   const UserInformation = () => {
     const { state, dispatch } = useContext(GlobalStateContext);
-
-    console.log(state);
 
     const handleInputChange = (event) => {
       const { name, value } = event.target;

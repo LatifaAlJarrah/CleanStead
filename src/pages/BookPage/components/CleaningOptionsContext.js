@@ -2,21 +2,23 @@ import React, { createContext, useContext, useReducer } from "react";
 
 const initialState = {
   options: [],
-  totalPrice: 0,
 };
 
 const cleaningOptionsReducer = (state, action) => {
   switch (action.type) {
     case "ADD_OPTION":
-      const newOptions = [...(state.options ?? []), action.payload];
-      // const newTotalPrice = newOptions.reduce(
-      //   (total, option) =>
-      //     total +
-      //     (option.services?.service1?.price || 0) +
-      //     (option.services?.service2?.price || 0),
-      //   0
-      // );
-      return { ...state, options: newOptions};
+      const existingOptionIndex = state.options.findIndex(
+        (option) => option.id === action.payload.id
+      );
+
+      if (existingOptionIndex !== -1) {
+        const updatedOptions = [...state.options];
+        updatedOptions[existingOptionIndex] = action.payload;
+        return { ...state, options: updatedOptions };
+      } else {
+        return { ...state, options: [...state.options, action.payload] };
+      }
+
     default:
       return state;
   }

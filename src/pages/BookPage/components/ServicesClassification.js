@@ -1,8 +1,10 @@
-import React, { useState, useEffect } from "react";
-import room from "../../../assest/room.png";
-import "./ServiceBooking.css";
-import { useCleaningOptionsContext } from "./CleaningOptionsContext";
+import React, { useState, useEffect, useMemo } from "react";
+
 import { useTotalPriceContext } from "./TotalPriceContext";
+import { useCleaningOptionsContext } from "./CleaningOptionsContext";
+
+import "./ServiceBooking.css";
+import room from "../../../assest/room.png";
 
 const DetailsSection = ({ name, count, price }) => {
   return (
@@ -88,55 +90,53 @@ const ServiceDetails = ({ name, count, setCount }) => {
 
 const CleaningOption = ({ name }) => {
   const [showDetails, setShowDetails] = useState(false);
-  const [service1Count, setService1Count] = useState(0);
-  const [service2Count, setService2Count] = useState(0);
-  const { cleaningOptions, dispatch } = useCleaningOptionsContext();
+  const [serviceCounts, setServiceCounts] = useState({
+    service1: 0,
+    service2: 0,
+  });
+
+  const { dispatch } = useCleaningOptionsContext();
   const { setService1Total, setService2Total } = useTotalPriceContext();
 
+  const memoizedServiceCounts = useMemo(() => serviceCounts, [serviceCounts]);
+
   useEffect(() => {
-    const newOptions = cleaningOptions.options.filter(
-      (option) => option.name !== name
-    );
-
     const newService1Option =
-      service1Count > 0
+      memoizedServiceCounts.service1 > 0
         ? {
-            count: service1Count,
-            price: service1Count * 15,
-            totalPrice: service1Count * 15,
+            count: memoizedServiceCounts.service1,
+            price: memoizedServiceCounts.service1 * 15,
+            totalPrice: memoizedServiceCounts.service1 * 15,
           }
         : null;
+
     const newService2Option =
-      service2Count > 0
+      memoizedServiceCounts.service2 > 0
         ? {
-            count: service2Count,
-            price: service2Count * 15,
-            totalPrice: service2Count * 15,
+            count: memoizedServiceCounts.service2,
+            price: memoizedServiceCounts.service2 * 15,
+            totalPrice: memoizedServiceCounts.service2 * 15,
           }
         : null;
 
-    if (newService1Option || newService2Option) {
-      const newOption = {
-        name,
-        services: {
-          service1: newService1Option,
-          service2: newService2Option,
-        },
-      };
-      newOptions.push(newOption);
-      dispatch({ type: "ADD_OPTION", payload: newOption });
+    const newOption = {
+      name,
+      services: {
+        service1: newService1Option,
+        service2: newService2Option,
+      },
+    };
 
-      if (newService1Option) {
-        setService1Total(newService1Option.totalPrice);
-      }
-      if (newService2Option) {
-        setService2Total(newService2Option.totalPrice);
-      }
+    dispatch({ type: "ADD_OPTION", payload: newOption });
+
+    if (newService1Option) {
+      setService1Total(newService1Option.totalPrice);
+    }
+    if (newService2Option) {
+      setService2Total(newService2Option.totalPrice);
     }
   }, [
-    service1Count,
-    service2Count,
-    cleaningOptions,
+    memoizedServiceCounts,
     dispatch,
     name,
     setService1Total,
@@ -145,6 +145,13 @@ const CleaningOption = ({ name }) => {
 
   const handleDetailsClick = () => {
     setShowDetails(!showDetails);
+  };
+
+  const handleServiceCountChange = (service, value) => {
+    setServiceCounts((prevCounts) => ({
+      ...prevCounts,
+      [service]: value,
+    }));
   };
 
   return (
@@ -163,18 +170,18 @@ const CleaningOption = ({ name }) => {
         </div>
       </div>
       {showDetails && (
-        <ServiceDetails
-          name="غرفة النوم"
-          count={service1Count}
-          setCount={setService1Count}
-        />
-      )}
-      {showDetails && (
-        <ServiceDetails
-          name="غرفة النوم"
-          count={service2Count}
-          setCount={setService2Count}
-        />
+        <>
+          <ServiceDetails
+            name={name}
+            count={serviceCounts.service1}
+            setCount={(count) => handleServiceCountChange("service1", count)}
+          />
+          <ServiceDetails
+            name={name}
+            count={serviceCounts.service2}
+            setCount={(count) => handleServiceCountChange("service2", count)}
+          />
+        </>
       )}
     </div>
   );
