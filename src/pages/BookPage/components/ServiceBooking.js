@@ -8,6 +8,7 @@ import { CleaningOptionsProvider } from "./CleaningOptionsContext";
 
 import { GlobalStateContext, GlobalStateProvider } from "./GlobalStateProvider";
 import { useTotalPriceContext } from "./TotalPriceContext";
+import Buttons from "./Buttons";
 
 import iconSmall from "../../../assest/iconSmall.jpg";
 
@@ -18,12 +19,16 @@ export const ServiceBooking = () => {
   const { service1Total, service2Total } = useTotalPriceContext();
   const total = service1Total + service2Total;
 
+  const [isBookingDateFormValid, setIsBookingDateFormValid] = useState(false);
+  const [isUserInfoFormValid, setIsUserInfoFormValid] = useState(false);
+
   const handleContinue = () => {
     if (currentStep === 1) {
       setCurrentStep(currentStep + 1);
     } else if (currentStep === 2) {
       setCurrentStep(currentStep + 1);
     } else if (currentStep === 3) {
+      // You can add logic for handling step 3 if needed
     }
   };
 
@@ -38,7 +43,7 @@ export const ServiceBooking = () => {
   const BookingDate = () => {
     const { state, dispatch } = useContext(GlobalStateContext);
     const selectedDate = state.selectedDate;
-    
+
     const handleOptionChange = (event) => {
       dispatch({ type: "SET_SELECTED_OPTION", payload: event.target.value });
     };
@@ -152,11 +157,13 @@ export const ServiceBooking = () => {
                 />
               </label>
             </div>
-            <ErrorMessage
-              name="selectedDate"
-              component="div"
-              className="error-message"
-            />
+            {selectedDate === null && (
+              <ErrorMessage
+                name="selectedDate"
+                component="div"
+                className="error-message"
+              />
+            )}
           </div>
         </Form>
       </Formik>
@@ -349,37 +356,25 @@ export const ServiceBooking = () => {
             {currentStep === 1 && (
               <ServicesClassification onContinue={handleContinue} />
             )}
-            {currentStep === 2 && <BookingDate onContinue={handleContinue} />}
+            {currentStep === 2 && (
+              <BookingDate
+                onContinue={handleContinue}
+                setIsBookingDateFormValid={setIsBookingDateFormValid}
+              />
+            )}
             {currentStep === 3 && (
-              <UserInformation onContinue={handleContinue} />
+              <UserInformation
+                onContinue={handleContinue}
+                setIsUserInfoFormValid={setIsUserInfoFormValid}
+              />
             )}
 
-            <div className="flex booking-list p-4 rounded-b-3xl justify-between">
-              {currentStep > 1 && currentStep < 4 && (
-                <button
-                  className="text-center px-4 py-2 lg:font-medium rounded-3xl lg:w-32 lg:h-12 ml-2 btn-back"
-                  onClick={handlePreviousBooking}
-                >
-                  الرجوع
-                </button>
-              )}
-
-              <div className="relative"></div>
-              {currentStep < 3 && (
-                <button
-                  className="btn-booking text-center px-4 py-2 lg:font-medium rounded-3xl lg:w-32 lg:h-12"
-                  onClick={handleCountinueBooking}
-                >
-                  استمرار
-                </button>
-              )}
-
-              {currentStep === 3 && (
-                <button className="btn-booking text-center px-4 py-2 lg:font-medium rounded-3xl lg:w-32 lg:h-12">
-                  ارسال
-                </button>
-              )}
-            </div>
+            <Buttons
+              currentStep={currentStep}
+              handlePreviousBooking={handlePreviousBooking}
+              handleCountinueBooking={handleCountinueBooking}
+              isFormValid={isBookingDateFormValid && isUserInfoFormValid}
+            />
           </div>
 
           <div className="col-span-4 h-96">
