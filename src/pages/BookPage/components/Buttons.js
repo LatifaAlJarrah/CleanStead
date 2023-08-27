@@ -1,29 +1,23 @@
 import React from "react";
 import SharedButton from "./SharedButton";
 
-const Buttons = ({
+export const Buttons = ({
   currentStep,
   handlePreviousBooking,
   handleCountinueBooking,
   isUserInfoFormValid,
+  onClick,
+  disabled
 }) => {
+  const currentButtonComponent = {
+    '1': <SharedButton label="الرجوع" type="back" onClick={onClick} />, //handlePreviousBooking
+    '2': <SharedButton label="استمرار" type="continue" onClick={onClick} />, //handleCountinueBooking
+    '3': <SharedButton label="ارسال" type="send" disabled={disabled} />, //disabled={!isUserInfoFormValid}
+    '4': <SharedButton label="الرجوع" type="back" onClick={onClick} />, //onClick={handlePreviousBooking}
+  }
   return (
     <div className="flex booking-list p-4 rounded-b-3xl justify-between">
-      {currentStep > 1 && currentStep < 4 && (
-        <SharedButton label="الرجوع" type="back" onClick={handlePreviousBooking} />
-      )}
-
-      <div className="relative"></div>
-
-      {currentStep < 3 && (
-        <SharedButton label="استمرار" type="continue" onClick={handleCountinueBooking} />
-      )}
-
-      {currentStep === 3 && (
-        <SharedButton label="ارسال" type="send" disabled={!isUserInfoFormValid} />
-      )}
+      {currentButtonComponent[currentStep]}
     </div>
   );
 };
-
-export default Buttons;
