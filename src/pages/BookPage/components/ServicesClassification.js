@@ -3,6 +3,10 @@ import React, { useState, useEffect, useMemo } from "react";
 import { useTotalPriceContext } from "./TotalPriceContext";
 import { useCleaningOptionsContext } from "./CleaningOptionsContext";
 
+import { v4 as uuidv4 } from "uuid";
+
+
+import { useFormik } from 'formik';
 import "./ServiceBooking.css";
 import room from "../../../assest/room.png";
 
@@ -41,7 +45,17 @@ const ServiceDetails = ({ name, count, setCount }) => {
   };
 
   const price = count * 15;
+
+  const formik = useFormik({
+    initialValues: {
+      
+    },
+    onSubmit: values => {
+    },
+  });
+
   return (
+    <form onSubmit={formik.handleSubmit}>
     <div className="mt-2">
       <div className="flex p-3 justify-between items-center service-container rounded-xl mr-2">
         <div>
@@ -85,6 +99,7 @@ const ServiceDetails = ({ name, count, setCount }) => {
         <DetailsSection name={name} count={count} price={count * 15} />
       )}
     </div>
+    </form>
   );
 };
 
@@ -99,6 +114,7 @@ const CleaningOption = ({ name }) => {
   const { setService1Total, setService2Total } = useTotalPriceContext();
 
   const memoizedServiceCounts = useMemo(() => serviceCounts, [serviceCounts]);
+  const [id] = useState(uuidv4()); 
 
   useEffect(() => {
     const newService1Option =
@@ -120,6 +136,7 @@ const CleaningOption = ({ name }) => {
         : null;
 
     const newOption = {
+      id,
       name,
       services: {
         service1: newService1Option,
@@ -136,6 +153,7 @@ const CleaningOption = ({ name }) => {
       setService2Total(newService2Option.totalPrice);
     }
   }, [
+    id,
     memoizedServiceCounts,
     dispatch,
     name,
@@ -176,6 +194,7 @@ const CleaningOption = ({ name }) => {
             count={serviceCounts.service1}
             setCount={(count) => handleServiceCountChange("service1", count)}
           />
+          
           <ServiceDetails
             name={name}
             count={serviceCounts.service2}

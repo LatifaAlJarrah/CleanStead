@@ -7,8 +7,7 @@ import {
   ServicesClassification,
   BookingDate,
   UserInformation,
-  Buttons
-} from "."
+} from ".";
 import iconSmall from "../../../assest/iconSmall.jpg";
 
 import "./ServiceBooking.css";
@@ -21,40 +20,44 @@ export const ServiceBooking = () => {
   const [isBookingDateFormValid, setIsBookingDateFormValid] = useState(false);
   const [isUserInfoFormValid, setIsUserInfoFormValid] = useState(false);
 
-  const currentStepComponent = {
-    '1': <ServicesClassification onContinue={handleContinue} />,
-    '2': <BookingDate
-      onContinue={handleContinue}
-      setIsBookingDateFormValid={setIsBookingDateFormValid}
-    />,
-    '3': <UserInformation
-      onContinue={handleContinue}
-      setIsUserInfoFormValid={setIsUserInfoFormValid}
-    />,
-  }
-
   const handleContinue = () => {
-    setCurrentStep(currentState => {
+    setCurrentStep((currentState) => {
       if (currentState === 3) {
-        return 3
+        return 3;
       } else {
-        return currentState + 1
+        return currentState + 1;
       }
     });
   };
 
   const handleCountinueBooking = () => {
-    handleContinue()
+    handleContinue();
   };
 
   const handlePreviousBooking = () => {
-    setCurrentStep(currentState => {
+    setCurrentStep((currentState) => {
       if (currentState === 1) {
-        return 1
+        return 1;
       } else {
-        return currentState - 1
+        return currentState - 1;
       }
     });
+  };
+
+  const currentStepComponent = {
+    1: <ServicesClassification onContinue={handleContinue} />,
+    2: (
+      <BookingDate
+        onContinue={handleContinue}
+        setIsBookingDateFormValid={setIsBookingDateFormValid}
+      />
+    ),
+    3: (
+      <UserInformation
+        onContinue={handleContinue}
+        setIsUserInfoFormValid={setIsUserInfoFormValid}
+      />
+    ),
   };
 
   return (
