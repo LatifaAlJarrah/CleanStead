@@ -3,12 +3,15 @@ import React from "react";
 import { PageContainer } from "../../component/PageContainer";
 
 import { ServiceBooking } from "./components/ServiceBooking";
+import { BookingProvider } from "../../Context/BookingContext";
 
 const BookingPage = () => {
   return (
-    <PageContainer>
-      <ServiceBooking />
-    </PageContainer>
+    <BookingProvider>
+      <PageContainer>
+        <ServiceBooking />
+      </PageContainer>
+    </BookingProvider>
   );
 };
 

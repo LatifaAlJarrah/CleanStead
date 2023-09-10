@@ -11,6 +11,7 @@ export const ServiceContainer = ({
   isUserInfoFormValid,
   total,
   children,
+  formik,
 }) => {
   const SubmitFunctions = {
     1: handleCountinueBooking,
@@ -19,28 +20,28 @@ export const ServiceContainer = ({
   };
 
   const onSubmit = () => {
-    formik.handleSubmit()
+    formik.handleSubmit();
     // SubmitFunctions[currentStep]();
   };
 
   // add all validation schema
-  
-  const validationSchema1 = {}
-  const validationSchema2 = {};
-  const validationSchema3 = {};
-  const activeValidationSchema = {
-    1: validationSchema1,
-    2: validationSchema2,
-    3: validationSchema3,
-  };
-  const formik = useFormik({
-    initialValues: {
-    },
-    validationSchema: activeValidationSchema[currentStep],
-    onSubmit: () => {
-      SubmitFunctions[currentStep]();
-    },
-  });
+
+  // const validationSchema1 = {}
+  // const validationSchema2 = {};
+  // const validationSchema3 = {};
+  // const activeValidationSchema = {
+  //   1: validationSchema1,
+  //   2: validationSchema2,
+  //   3: validationSchema3,
+  // };
+  // const formik = useFormik({
+  //   initialValues: {
+  //   },
+  //   validationSchema: activeValidationSchema[currentStep],
+  //   onSubmit: () => {
+  //     SubmitFunctions[currentStep]();
+  //   },
+  // });
 
   return (
     <>
@@ -78,7 +79,11 @@ export const ServiceContainer = ({
           currentStep={currentStep}
           onClick={onSubmit}
           disabled={
-            currentStep === 3 && isClassificationOptionValid && isBookingDateFormValid && isUserInfoFormValid
+            !!formik.isValid &&
+            currentStep === 3 &&
+            isClassificationOptionValid &&
+            isBookingDateFormValid &&
+            isUserInfoFormValid
           }
         />
       </div>
