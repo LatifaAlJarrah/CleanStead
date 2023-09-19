@@ -11,17 +11,13 @@ export const ServiceContainer = ({
   isUserInfoFormValid,
   total,
   children,
-  formik,
+  isValidForm,
+  onSubmit
 }) => {
   const SubmitFunctions = {
     1: handleCountinueBooking,
     2: handlePreviousBooking,
     3: () => {},
-  };
-
-  const onSubmit = () => {
-    formik.handleSubmit();
-    // SubmitFunctions[currentStep]();
   };
 
   // add all validation schema
@@ -79,7 +75,7 @@ export const ServiceContainer = ({
           currentStep={currentStep}
           onClick={onSubmit}
           disabled={
-            !!formik.isValid &&
+            !!isValidForm &&
             currentStep === 3 &&
             isClassificationOptionValid &&
             isBookingDateFormValid &&

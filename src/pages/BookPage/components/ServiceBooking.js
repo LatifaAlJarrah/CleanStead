@@ -123,7 +123,8 @@ export const ServiceBooking = () => {
             isBookingDateFormValid={isBookingDateFormValid}
             isUserInfoFormValid={isUserInfoFormValid}
             total={total}
-            formik={formik}
+            isValidForm={formik.isValid}
+            onSubmit={() => formik.handleSubmit()}
           >
             {currentStepComponent[currentStep]}
           </ServiceContainer>
